@@ -2,6 +2,7 @@
   "name": "to-do-app",
   "version": "1.0.0",
   "description": "401 JS --  Lab 28 Todo ===",
+  "main": "index.js",
   "scripts": {
     "watch": "webpack-dev-server --config webpack.dev.js",
     "test": "jest"

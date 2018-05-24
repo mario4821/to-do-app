@@ -1,21 +1,21 @@
 import React from 'react';
-import autoBind from './../../utils/';
+import autoBind from './../../utils/index';
 
-export default class ExpenseForm extends React.Component {
+export default class NoteForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       title: '',
-      price: 0,
+      content: '',
     };
 
-    autoBind.call(this,ExpenseForm);
+    autoBind.call(this, NoteForm);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.handleAddExpense(this.state);
+    this.props.handleAddNote(this.state);
   }
 
   handleChange(event) {
@@ -30,13 +30,19 @@ export default class ExpenseForm extends React.Component {
         <input
         type="text"
         name="title"
-        placeholder="title"
+        placeholder="title of note"
         value={this.state.title}
         onChange={this.handleChange}
         />
-        <button type="submit">Submit</button>
+        <input
+        type="text"
+        name="content"
+        placeholder="note content"
+        value={this.state.text}
+        onChange={this.handleChange}
+        />
+        <button type="submit">Submit Note</button>
         </form>
     );
   }
-
 }
