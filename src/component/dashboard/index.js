@@ -1,6 +1,7 @@
 import React from 'react';
 import uuid from 'uuid/v4';
 import NoteForm from './../NoteForm/index';
+import NoteList from './../NoteList/index';
 import autoBind from '../../utils/index';
 
 export default class Dashboard extends React.Component {
@@ -20,12 +21,24 @@ export default class Dashboard extends React.Component {
       return this.setState({ error: true });
     }
 
-    note.CreatedOn = new Date();
+    note.createdOn = new Date();
     note.id = uuid();
 
     return this.setState((previousState) => {
       return {
         notes: [...previousState.notes, note],
+        error: null,
+      };
+    });
+  }
+
+  handleRemoveNote(note) {
+    return this.setState((previousState) => {
+      const newNote = previousState.notes.filter((item) => {
+        return item.id !== note.id;
+      });
+      return {
+        notes: newNote,
         error: null,
       };
     });
@@ -41,6 +54,7 @@ export default class Dashboard extends React.Component {
         {
           this.state.error && <h2 className="error">You must enter a note.</h2>
         }
+        <NoteList notes={this.state.notes} handleRemoveNote={this.handleRemoveNote}/>
         </section>
     );
   }

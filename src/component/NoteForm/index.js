@@ -24,6 +24,7 @@ export default class NoteForm extends React.Component {
       [name]: value,
     });
   }
+  
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

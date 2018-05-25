@@ -1,20 +1,30 @@
 import React from 'react';
+import NoteItem from '../NoteItem/index';
+import autoBind from '../../utils/index';
 
-export default class NoteList extends React.Component {
+export default class NotesList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    autoBind.call(this, NotesList);
+  }
   render() {
     return (
       <div>
-        <ul className="notes">
-        {
+        <ul className="noteList">
+        { 
           this.props.notes.map((note) => {
-            return (
-              <li key={note.id}>
-              {note.title} : {note.content}
-              </li>
-            );
-          })
-        }
-        </ul>
+          return (
+            <NoteItem
+              key={note.id}
+              note={note}
+              id={note.id}
+                handleRemoveNote={this.props.handleRemoveNote}
+                />
+                );
+              })
+            }
+          </ul>
       </div>
     );
   }

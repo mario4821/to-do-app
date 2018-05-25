@@ -6,6 +6,7 @@ export default class NoteItem extends React.Component {
         <div className="NoteItem">
         {this.props.note.title}
        {this.props.note.content}
+       <button onClick={() => this.props.handleRemoveNote(this.props.note)}>Delete</button>
         </div>
     );
   }
