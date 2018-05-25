@@ -44,6 +44,15 @@ export default class Dashboard extends React.Component {
     });
   }
 
+  handleUpdateNote(noteToUpdate) {
+    return this.setState((previousState) => {
+      return {
+        notes: previousState.notes.map(note =>
+          (note.id === noteToUpdate.id ? noteToUpdate : note)),
+      };
+    });
+  }
+
   render() {
     return (
         <section className="dashboard">
@@ -54,7 +63,8 @@ export default class Dashboard extends React.Component {
         {
           this.state.error && <h2 className="error">You must enter a note.</h2>
         }
-        <NoteList notes={this.state.notes} handleRemoveNote={this.handleRemoveNote}/>
+        <NoteList notes={this.state.notes} 
+        handleRemoveNote={this.handleRemoveNote} handleUpdateNote={this.handleUpdateNote}/>
         </section>
     );
   }
